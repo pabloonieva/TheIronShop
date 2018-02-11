@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+
+//creating user class or constructor
+// we have name, email, password, address and paymentMethod
 const userSchema = new mongoose.Schema({
   name:  {
     type: String,
