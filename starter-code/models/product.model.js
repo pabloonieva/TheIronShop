@@ -5,13 +5,18 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
   name:  {
     type: String,
-    required: [true, `Name can't be empty`]
+    required: [true, `Name can't be empty`],
+    index: {unique: true}
     },
   image: {
     type: String
   },
   price: {
     type: Number,
-    required: [true, `Email can't be empty`]
+    required: [true, `Email can't be empty`],
+    min: 0
   }
 });
+
+const Product = mongoose.model('Product', productSchema);
+module.exports = Product;
