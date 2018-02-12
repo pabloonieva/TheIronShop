@@ -1,3 +1,4 @@
+//Mongooose documentation: http://mongoosejs.com/docs/guide.html
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const HASH_FACTOR = 10;
@@ -11,14 +12,16 @@ const userSchema = new mongoose.Schema({
     },
   email: {
     type: String,
-    required: [true, `Email can't be empty`]
+    required: [true, `Email can't be empty`],
+    index: {unique: true}
   },
   password:{
     type: String,
     required: [true, `You need to add your password`]
   },
   address: {
-    type: String
+    type: String,
+    required: [true, `Adress can't be empty`]
   },
   paymentMethod: {
     type: Number
