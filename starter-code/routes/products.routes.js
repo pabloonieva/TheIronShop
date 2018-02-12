@@ -9,3 +9,5 @@ router.get('/edit', productsController.showAdmin);
 router.post('/products', productsController.addProduct);
 router.post('/products', productsController.deleteProduct);
 router.post('/products', productsController.updateProduct);
+
++module.exports = router;
