@@ -19,9 +19,6 @@ const morgan = require('morgan');
 //Cookie-parser used to understanding cookies
 const cookieParser = require(`cookie-parser`);
 
-//Body-parser used for body unde
-const bodyParser = require(`body-parser`);
-
 //Requerimos bodyparser, que nos permite recibir el cuerpo de un form
 //INstalamos: npm install --save body-parser
 const bodyParser = require('body-parser');
