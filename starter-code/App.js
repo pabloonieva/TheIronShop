@@ -13,7 +13,7 @@ const path = require(`path`);
 const favicon = require('serve-favicon');
 
 //Request Morgan to handle logs -- Prints in console the data we request
-//Dev prints method, URL, status, response time and content length 
+//Dev prints method, URL, status, response time and content length
 const morgan = require('morgan');
 
 //Cookie-parser used to understanding cookies
@@ -38,16 +38,16 @@ const MongoStore = require("connect-mongo")(session);
 //No entiendo
 require('./configs/db.config');
 
-const app = express();
-
 //Requerimos las rutas creadas
 const auth = require('./routes/auth.routes');
-const products = require('./routes/products.routes');
-const shoppingCart = require('./routes/shoppingCart.routes');
+//const products = require('./routes/products.routes');
+//const shoppingCart = require('./routes/shoppingCart.routes');
+
+const app = express();
 
 //View engine setup
 app.use(expressLayouts);
-app.set('layout', 'layouts/main-layout');
+app.set('layout', 'layouts/main');
 app.set('views', path.join(__dirname, 'views'));
 app.set(`view engine`, `ejs`);
 
@@ -74,7 +74,7 @@ app.use(session({
   })
 }))
 
-// app.use('/xxxx', auth);
+app.use('/', auth);
 // app.use('/xxxx', products);
 // app.use('/xxxx', shoppingCart);
 
@@ -97,15 +97,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-
-
-
-
-
-
-
-
-
-
-
