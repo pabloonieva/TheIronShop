@@ -3,14 +3,18 @@ const LocalStrategy = require('passport-local').Strategy;
 
 module.exports.setup = (passport) => {
     passport.serializeUser((user, next) => {
+      // console.log('User serializado =>');
+      //   console.log(user);
         next(null, user._id);
     });
     passport.deserializeUser((id, next) => {
-        User.findById(id)
-            .then(user => {
-                next(null, user);
-            })
-            .catch(error => next(error));
+      // console.log('User serializado =>');
+      // console.log(id);
+      User.findById(id)
+          .then(user => {
+              next(null, user);
+          })
+          .catch(error => next(error, null));
     });
     passport.use('local-auth', new LocalStrategy({
         emailField: 'email',
@@ -37,7 +41,7 @@ module.exports.setup = (passport) => {
 };
 
 //Esto?
-module.exports.isAuthenticated = (req, res, next) => {
+module.exports.checkIsAuthenticated = (req, res, next) => {
      if (req.isAuthenticated()) {
          next();
      } else {
