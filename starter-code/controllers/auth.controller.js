@@ -8,7 +8,7 @@ module.exports.doSignup = (req, res, next) => {
     //we must add here the function
 };
 module.exports.login = (req, res, next) => {
-    res.json({ message: 'Hello World'});
+    res.render();
 };
 module.exports.doLogin = (req, res, next) => {
     //we must add here the function
