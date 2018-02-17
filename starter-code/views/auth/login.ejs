@@ -9,7 +9,7 @@
       <div class="form-group <%= typeof error != 'undefined' && error.email ? 'has-error' : '' %>">
         <div class="input-group">
           <span class="input-group-addon">
-            <i class="fa fa-mail"></i>
+            <i class="glyphicon glyphicon-envelope"></i>
           </span>
           <input type="text" name="email" class="form-control" placeholder="email" value="<%= typeof user != 'undefined' && user.email ? user.email : '' %>">
         </div>

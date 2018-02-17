@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const User = require('../models/user.model');
 const passport = require('passport');
 const expressFlash = require('express-flash');
+const configPassport = require('../configs/passport.config');
 
 module.exports.signup = (req, res, next) => {
     //we must add here the function
@@ -38,7 +39,7 @@ module.exports.doLogin = (req, res, next) => {
               if(error){
                 next(error);
               } else{
-                res.render('/');
+                res.render('/home');
               }
             });
         }
@@ -59,7 +60,7 @@ module.exports.logout = (req, res, next) => {
           next(error);
       } else {
           req.logout();
-          //Render o redirect?¿? auth/login o /login?¿? 
+          //Render o redirect?¿? auth/login o /login?¿?
           res.render("auth/login");
       }
   });

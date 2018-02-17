@@ -1,3 +1,6 @@
+const passport = require('passport');
+const expressFlash = require('express-flash');
+const flash = require("connect-flash");
 //Express se instala con npm install express --save
 //Archivos estáticos (CSS), han de guardarse en carpeta public
 //Tenemos que decir donde están las views
@@ -35,8 +38,8 @@ const mongoose = require(`mongoose`);
 const session = require('express-session');
 const MongoStore = require("connect-mongo")(session);
 
-//No entiendo
 require('./configs/db.config');
+require('./configs/passport.config').setup(passport);
 
 //Requerimos las rutas creadas
 const auth = require('./routes/auth.routes');
