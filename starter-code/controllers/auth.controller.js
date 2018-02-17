@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('../models/user.model');
+const passport = require('passport');
 
 module.exports.signup = (req, res, next) => {
     //we must add here the function
@@ -27,10 +28,10 @@ module.exports.doLogin = (req, res, next) => {
     } else {
       User.findOne({email: email})
         .then(result => {
-
+            //logic here
         })
         .catch(error => {
-
+            //logic here
         });
     }
 };
