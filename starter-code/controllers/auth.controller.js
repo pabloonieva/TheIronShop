@@ -29,7 +29,8 @@ module.exports.doLogin = (req, res, next) => {
               }
       });
     } else {
-      passport.authenticate('local-auth', (error,user,validation) => {
+      passport.authenticate('local-auth', (error, user, validation) => {
+        debugger;
         if(error){
           next(error);
         } else if(!user){
@@ -39,7 +40,7 @@ module.exports.doLogin = (req, res, next) => {
               if(error){
                 next(error);
               } else{
-                res.render('/home');
+                res.redirect('/home')
               }
             });
         }

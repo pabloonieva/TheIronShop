@@ -43,10 +43,13 @@ require('./configs/passport.config').setup(passport);
 
 //Requerimos las rutas creadas
 const auth = require('./routes/auth.routes');
-//const products = require('./routes/products.routes');
+const products = require('./routes/products.routes');
 //const shoppingCart = require('./routes/shoppingCart.routes');
 
 const app = express();
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 //View engine setup
 app.use(expressLayouts);
@@ -75,10 +78,11 @@ app.use(session({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60
   })
-}))
+}));
 
 app.use('/', auth);
-// app.use('/xxxx', products);
+app.use('/', products);
+
 // app.use('/xxxx', shoppingCart);
 
 // catch 404 and forward to error handler

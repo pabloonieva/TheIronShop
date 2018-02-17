@@ -17,7 +17,7 @@ module.exports.setup = (passport) => {
           .catch(error => next(error, null));
     });
     passport.use('local-auth', new LocalStrategy({
-        emailField: 'email',
+        usernameField: 'email',
         passwordField: 'password'
     }, (email, password, next) => {
         User.findOne({ email: email})

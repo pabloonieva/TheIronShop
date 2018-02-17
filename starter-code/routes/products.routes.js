@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const Controller = require('../controllers/products.controller');
+const productsController = require('../controllers/products.controller');
 
+
+router.get('/home', productsController.showUser);
 /*
-router.get('/products', productsController.showUser);
 router.post('/products', productsController.addProductToCart);
 
 router.get('/edit', productsController.showAdmin);
