@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../models/user.model');
 const passport = require('passport');
+const express-flash = require('express-flash')
 
 module.exports.signup = (req, res, next) => {
     //we must add here the function
