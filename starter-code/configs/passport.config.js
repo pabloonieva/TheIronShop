@@ -34,3 +34,31 @@ module.exports.setup = (passport) => {
             })
             .catch(error => next(error));
     }));
+};
+
+//Esto?
+module.exports.isAuthenticated = (req, res, next) => {
+     if (req.isAuthenticated()) {
+         next();
+     } else {
+         res.status(401);
+         res.redirect('/login');
+     }
+ };
+
+ module.exports.checkRole = (role) => {
+     return (req, res, next) => {
+         if (!req.isAuthenticated()) {
+             res.status(401);
+             res.redirect('/login');
+         } else if (req.user.role === role) {
+             next();
+         } else {
+             res.status(403);
+             res.render('error', {
+                 message: 'Forbidden',
+                 error: {}
+             });
+         }
+     };
+ };
