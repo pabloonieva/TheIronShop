@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../models/user.model');
 const passport = require('passport');
-const express-flash = require('express-flash')
+const expressFlash = require('express-flash');
 
 module.exports.signup = (req, res, next) => {
     //we must add here the function
@@ -12,7 +12,8 @@ module.exports.doSignup = (req, res, next) => {
 };
 module.exports.login = (req, res, next) => {
     res.render('auth/login',{
-        flash: req.flash()
+        //No me va flash
+        //flash: req.flash()
     });
 };
 module.exports.doLogin = (req, res, next) => {
@@ -27,15 +28,39 @@ module.exports.doLogin = (req, res, next) => {
               }
       });
     } else {
-      User.findOne({email: email})
-        .then(result => {
-            //logic here
-        })
-        .catch(error => {
-            //logic here
-        });
+      passport.authenticate('local-auth', (error,user,validation) => {
+        if(error){
+          next(error);
+        } else if(!user){
+            res.render('auth/login', {error: validation});
+        } else{
+            req.login(user,(error) => {
+              if(error){
+                next(error);
+              } else{
+                res.render('/');
+              }
+            });
+        }
+      })(req, res, next);
+
+      // User.findOne({email: email})
+      //   .then(result => {
+      //       //logic here
+      //   })
+      //   .catch(error => {
+      //       //logic here
+      //   });
     }
 };
 module.exports.logout = (req, res, next) => {
-    //we must add here the function
+  req.session.destroy(error => {
+      if (error) {
+          next(error);
+      } else {
+          req.logout();
+          //Render o redirect?¿? auth/login o /login?¿? 
+          res.render("auth/login");
+      }
+  });
 };
