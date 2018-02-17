@@ -25,6 +25,11 @@ const userSchema = new mongoose.Schema({
   },
   paymentMethod: {
     type: Number
+  },
+
+  isAdmin: {
+    type: Boolean,
+    default: false 
   }
 }, { timestamps: true });
 
