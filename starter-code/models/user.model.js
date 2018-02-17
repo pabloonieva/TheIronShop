@@ -47,7 +47,7 @@ userSchema.pre('save', function(next) {    //function (next)¿?
 });
 
 userSchema.methods.checkPassword = function(password) {
-    return bcrypt.compare(password, "$2a$10$cFqtJLoR5cZ7rnR5iiUwdO8ALWT3YojodflbtEFzj8lIIiwzCK2Vy");
+    return bcrypt.compare(password, this.password);
 };
 
 
