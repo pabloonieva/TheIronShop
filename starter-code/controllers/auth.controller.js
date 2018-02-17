@@ -16,15 +16,16 @@ module.exports.doSignup = (req, res, next) => {
                 
             }else{
                 const newUser = new User( {
-                    name: user.name,
-                    email: user.email,
-                    password: user.password,
-                    address: user.address,
-                    paymentMethod: user.paymentMethod
+                    name: req.body.name,
+                    email: req.body.email,
+                    password: req.body.password,
+                    address: req.body.address,
+                    paymentMethod: req.body.paymentMethod
                 }); 
                 newUser.save()
                 .then(() => {
-                    req.flash('info', 'Successfully sign up, now you can login!');
+                    //req.flash('info', 'Successfully sign up, now you can login!');
+                    console.log('Successfully signed up, now you can login!');
                     res.redirect('/login');
                 })
                 .catch(error => {
