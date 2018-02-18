@@ -1,6 +1,5 @@
-<div>Ironhack Products:</div>
-
-<hr>
+<div class="text-center h3" >Ironhack Products</div>
+<br><hr><br>
 <% listOfProducts.forEach((product) => { %>
 <div class="col-md-2 column productbox">
     <img src="<%= product.image %>" class="img-responsive">
@@ -8,5 +7,3 @@
     <div class="productprice"><div class="pull-right"><a href="#" class="btn btn-danger btn-sm" role="button">BUY</a></div><div class="pricetext"><%=product.price%>€</div></div>
 </div>
 <% }) %>
-
-<hr>
