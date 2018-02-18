@@ -10,6 +10,13 @@ module.exports.showUser = (req, res, next) => {
   });
 };
 
+module.exports.showAdmin = (req, res, next) => {
+  Product.find({}, (err, listOfProducts) => {
+    if (err) { return next(err); }
+    res.render('home/edit', { listOfProducts });
+  });
+};
+
 /*
 module.exports.showUser = (req, res, next) => {
   res.render('home/home',{
