@@ -9,29 +9,52 @@
           <th>Image URL</th>
           <th>Color</th>
           <th>Price</th>
+          <th>Edit</th>
         </tr>
     </thead>
     <tbody>
       <% listOfProducts.forEach((product) => { %>
+        <%=product.edit%>
       <tr>
-        <td><%=product.name%></td>
-        <td><%=product.image%> </td>
-        <td><%=product.color%></td>
-        <td><%=product.price%></td>
+        <% if(product.edit) { %>
+          <td><input><%=product.name%></input></td>
+          <td><input><%=product.image%></input></td>
+          <td><input><%=product.color%></input></td>
+          <td><input><%=product.price%></input></td>
+          <td><button action="/updateProduct" method="POST">Save</button></td>
+        <% } else { %>
+          <td><%=product.name%></td>
+          <td><%=product.image%> </td>
+          <td><%=product.color%></td>
+          <td><%=product.price%></td>
+          <td><a href="/updateProduct/<%= product.id %>" type="btn btn-primary">Edit</a></td>
+          <% product.edit = true %>
+        <% } %>
       </tr>
       <% }) %>
     </tbody>
   </table>
 </div>
-
 <br>
 <hr>
 
 <h3>Here you can add a new product</h3><br>
-<form action="/edit" method= "POST">
-  <input type="text" placeholder="Name" name="name" value="">
-  <input type="text" placeholder="Image" name="image" value="">
-  <input type="text" placeholder="Color" name="color" value="">
-  <input type="text" placeholder="Price" name="price" value="">
-  <input type="submit" value="Save product"></input>
+<form class="form-horizontal" action="/edit" method= "POST">
+  <div class="form-group">
+    <label class="control-label col-sm-2">Name:</label>
+    <input type="text" placeholder="Enter name" name="name" width="100%">
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Image URL:</label>
+    <input type="text" placeholder="Enter image URL" name="image" width="100%">
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Color:</label>
+    <input type="text" placeholder="Enter product color" name="color" width="100%">
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Price:</label>
+    <input type="text" placeholder="Enter price" name="price" width="100%">
+  </div>
+  <button type="submit" class="col-sm-4">Save product</input>
 </form>
