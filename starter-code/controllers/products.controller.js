@@ -2,7 +2,15 @@ const mongoose = require('mongoose');
 const Product = require('../models/product.model');
 const expressFlash = require('express-flash');
 
-//Recordar vector
+
+module.exports.showUser = (req, res, next) => {
+  Product.find({}, (err, listOfProducts) => {
+    if (err) { return next(err); }
+    res.render('home/home', { listOfProducts });
+  });
+};
+
+/*
 module.exports.showUser = (req, res, next) => {
   res.render('home/home',{
     listOfProducts: [
@@ -23,7 +31,8 @@ module.exports.showUser = (req, res, next) => {
         color: "black",
         image: "https://preview.ibb.co/iFfiqn/2018_02_17_19_39_42.jpg",
         price: 8
-      },
+      }
     ]
   });
 };
+*/
