@@ -17,6 +17,20 @@ module.exports.showAdmin = (req, res, next) => {
   });
 };
 
+module.exports.addProduct = (req, res, next) => {
+  const newProduct = new Product ({
+    name: req.body.name,
+    image: req.body.image,
+    color: req.body.color,
+    price: req.body.price
+  });
+  newProduct.save()
+    .then(() => {
+      console.log("Saved correctly");
+      res.redirect('/edit');
+    });
+};
+
 /*
 module.exports.showUser = (req, res, next) => {
   res.render('home/home',{

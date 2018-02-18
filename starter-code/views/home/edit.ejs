@@ -5,18 +5,19 @@
   <table class="table tablestriped">
     <thead>
         <tr>
-          <th></th>
-          <th></th>
-          <th></th>
+          <th>Name</th>
+          <th>Image URL</th>
+          <th>Color</th>
+          <th>Price</th>
         </tr>
     </thead>
     <tbody>
       <% listOfProducts.forEach((product) => { %>
       <tr>
-        <th><%=product.name%></th>
-        <th><%=product.image%> </th>
-        <th><%=product.color%></th>
-        <th><%=product.price%></th>
+        <td><%=product.name%></td>
+        <td><%=product.image%> </td>
+        <td><%=product.color%></td>
+        <td><%=product.price%></td>
       </tr>
       <% }) %>
     </tbody>
@@ -32,5 +33,5 @@
   <input type="text" placeholder="Image" name="image" value="">
   <input type="text" placeholder="Color" name="color" value="">
   <input type="text" placeholder="Price" name="price" value="">
-  <button type="submit" name="save">Save product</button>
+  <input type="submit" value="Save product"></input>
 </form>
