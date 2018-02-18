@@ -9,19 +9,27 @@ module.exports.showUser = (req, res, next) => {
     res.render('home/home', {
       listOfProducts:listOfProducts,
       session:req.session.currentUser,
-      path: req.path
+      url: req.originalUrl
     });
   });
 };
 
 module.exports.showAdmin = (req, res, next) => {
   Product.find({}, (err, listOfProducts) => {
-    if (err) { return next(err); }
-    res.render('home/edit', {
-      listOfProducts:listOfProducts,
-      session:req.session.currentUser,
-      path: req.path
-    });
+    if (err) {return next(err);}
+    if(req.session.currentUser){
+      if(!req.session.currentUser.isAdmin){
+        res.redirect("http://www.i-fuckyou.com/");
+        }else{
+          res.render('home/edit', {
+            listOfProducts:listOfProducts,
+            session:req.session.currentUser,
+            url: req.originalUrl
+          });  
+        } 
+    }else{
+      res.redirect("http://www.i-fuckyou.com/");
+    }
   });
 };
 

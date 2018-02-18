@@ -8,7 +8,7 @@
           <span class="input-group-addon">
             <i class="fa fa-user"></i>
           </span>
-          <input type="text" name="username" class="form-control" placeholder="Username" value="<%= typeof user != 'undefined' && user.username ? user.username : '' %>">
+          <input type="text" name="name" class="form-control" placeholder="Name" value="<%= typeof user != 'undefined' && user.username ? user.username : '' %>">
         </div>
         <% if (typeof(error) != 'undefined' && error.username) { %>
           <label class="control-label"> <%= error.username %> </label>
@@ -35,35 +35,50 @@
 </div>
 
 -->
-<form action="/signup" method= "POST">
 
-    Name:<br>
-    <input type="text" name="name" placeholder="Name">
-    <br>
 
-    Email:<br>
-    <input type="text" name="email" placeholder="Email" value="<%= typeof user != 'undefined' && user.email ? user.email : '' %>" >
-    <% if (typeof(error) != 'undefined' && error.email) { %>
-        <label> <%= error.email %> </label>
-    <% } %>
-    <br>
 
-    Password:<br>
-    <input type="password" name="password" placeholder="Password">
+<div class="row">
+  <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+    <form action="/signup" method= "POST">
 
-    <% if (typeof(error) != 'undefined' && error.password) { %>
-        <label><%= error.password %></label>
-    <% } %>
-    <br>
-    Address:<br>
-    <input type="text" name="address" placeholder="Calle, Nº, CP, Localidad, Provincia, País">
-    <br>
+        Name:<br>
+        <input class="form-control" type="text" name="name" placeholder="Name">
+        <br>
 
-    Payment Method:<br>
-    <input type="number" name="payment-method" placeholder="Payment Method">
-    <br>
+        Email:<br>
+        <input class="form-control"  type="text" name="email" placeholder="Email" value="<%= typeof user != 'undefined' && user.email ? user.email : '' %>" >
+        <% if (typeof(error) != 'undefined' && error.email) { %>
+            <label> <%= error.email %> </label>
+        <% } %>
+        <br>
 
-    <br><br>
-    <input type="submit" value="Submit">
+        Password:<br>
+        <input class="form-control"  type="password" name="password" placeholder="Password">
 
-</form>
+        <% if (typeof(error) != 'undefined' && error.password) { %>
+            <label><%= error.password %></label>
+        <% } %>
+        <br>
+        Address:<br>
+        <input class="form-control"  type="text" name="address" placeholder="Calle, Nº, CP, Localidad, Provincia, País">
+        <br>
+
+        Payment Method:<br>
+        <input class="form-control"  type="number" name="payment-method" placeholder="Payment Method">
+        <br>
+
+        <input class="btn btn-block btn-primary" type="submit" value="Submit">
+    </form>
+  </div>
+</div>
+
+<div class="col-xs-12 col-sm-4 col-sm-offset-4">
+    <hr>
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        Already have an IronAccount?
+        <a href="/login">Log in </a>
+      </div>
+    </div>
+  </div>
