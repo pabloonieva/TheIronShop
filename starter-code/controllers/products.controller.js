@@ -6,7 +6,12 @@ const expressFlash = require('express-flash');
 module.exports.showUser = (req, res, next) => {
   Product.find({}, (err, listOfProducts) => {
     if (err) { return next(err); }
-    res.render('home/home', { listOfProducts });
+    res.render('home/home', {
+      listOfProducts:listOfProducts,
+      session:req.session.currentUser,
+      isAdmin:req.session.currentUser.isAdmin,
+      name: req.session.currentUser.name
+    });
   });
 };
 
