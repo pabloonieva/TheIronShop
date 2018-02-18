@@ -31,6 +31,15 @@ module.exports.addProduct = (req, res, next) => {
     });
 };
 
+module.exports.updateProduct = (req, res, next) => {
+  const productId = req.params.id;
+  console.log(req.params.id);
+  Product.update( {_id: productId } , { $inc: { edit: true} } );
+  // Product.findOne({ _id: productId }).exec(function(err, product) {
+  //     product.edit: true;
+  //   };
+};
+
 /*
 module.exports.showUser = (req, res, next) => {
   res.render('home/home',{
