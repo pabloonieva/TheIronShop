@@ -36,15 +36,17 @@
                 <a href="/logout" class="btn btn-primary">Log out</a>
                 </div>
                 <div>
-                    <p>Hello <%=name%> </p>
+                    <p>Hello <%=session.name%> </p>
                 </div>
             </div>
 
-            <% if (isAdmin) { %>
+            <% if (session.isAdmin) { %>
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         <hr>
-                        <a href="/home" class="btn btn-primary">Admin: Go Home</a>
+                        <a href="/home" class="btn btn-primary">Admin: Go HOME</a>
+                        <a href="/edit" class="btn btn-primary">Admin: Go EDIT</a>
+
                         <hr>
                     </div>
                 </div>

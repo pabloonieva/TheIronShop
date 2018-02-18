@@ -9,8 +9,7 @@ module.exports.showUser = (req, res, next) => {
     res.render('home/home', {
       listOfProducts:listOfProducts,
       session:req.session.currentUser,
-      isAdmin:req.session.currentUser.isAdmin,
-      name: req.session.currentUser.name
+      path: req.path
     });
   });
 };
@@ -18,7 +17,11 @@ module.exports.showUser = (req, res, next) => {
 module.exports.showAdmin = (req, res, next) => {
   Product.find({}, (err, listOfProducts) => {
     if (err) { return next(err); }
-    res.render('home/edit', { listOfProducts });
+    res.render('home/edit', {
+      listOfProducts:listOfProducts,
+      session:req.session.currentUser,
+      path: req.path
+    });
   });
 };
 
