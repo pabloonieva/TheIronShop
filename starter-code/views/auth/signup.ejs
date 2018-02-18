@@ -50,11 +50,11 @@
 
     Password:<br>
     <input type="password" name="password" placeholder="Password">
-   
+
     <% if (typeof(error) != 'undefined' && error.password) { %>
         <label><%= error.password %></label>
     <% } %>
-
+    <br>
     Address:<br>
     <input type="text" name="address" placeholder="Calle, Nº, CP, Localidad, Provincia, País">
     <br>
@@ -66,4 +66,4 @@
     <br><br>
     <input type="submit" value="Submit">
 
-</form> 
+</form>

@@ -4,11 +4,11 @@ const productsController = require('../controllers/products.controller');
 
 
 router.get('/home', productsController.showUser);
+router.get('/edit', productsController.showAdmin);
+router.post('/edit', productsController.addProduct);
+
 /*
 router.post('/products', productsController.addProductToCart);
-
-router.get('/edit', productsController.showAdmin);
-router.post('/products', productsController.addProduct);
 router.post('/products', productsController.deleteProduct);
 router.post('/products', productsController.updateProduct);
 */

@@ -1,0 +1,37 @@
+<div class="container">
+  <h2>Hello Admin</h2>
+<hr>
+  <p>Here you will be able to edit all your IronProducts</p>
+  <table class="table tablestriped">
+    <thead>
+        <tr>
+          <th>Name</th>
+          <th>Image URL</th>
+          <th>Color</th>
+          <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% listOfProducts.forEach((product) => { %>
+      <tr>
+        <td><%=product.name%></td>
+        <td><%=product.image%> </td>
+        <td><%=product.color%></td>
+        <td><%=product.price%></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+<hr>
+
+<h3>Here you can add a new product</h3><br>
+<form action="/edit" method= "POST">
+  <input type="text" placeholder="Name" name="name" value="">
+  <input type="text" placeholder="Image" name="image" value="">
+  <input type="text" placeholder="Color" name="color" value="">
+  <input type="text" placeholder="Price" name="price" value="">
+  <input type="submit" value="Save product"></input>
+</form>

@@ -10,6 +10,27 @@ module.exports.showUser = (req, res, next) => {
   });
 };
 
+module.exports.showAdmin = (req, res, next) => {
+  Product.find({}, (err, listOfProducts) => {
+    if (err) { return next(err); }
+    res.render('home/edit', { listOfProducts });
+  });
+};
+
+module.exports.addProduct = (req, res, next) => {
+  const newProduct = new Product ({
+    name: req.body.name,
+    image: req.body.image,
+    color: req.body.color,
+    price: req.body.price
+  });
+  newProduct.save()
+    .then(() => {
+      console.log("Saved correctly");
+      res.redirect('/edit');
+    });
+};
+
 /*
 module.exports.showUser = (req, res, next) => {
   res.render('home/home',{

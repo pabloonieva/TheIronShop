@@ -11,6 +11,9 @@ const productSchema = new mongoose.Schema({
   image: {
     type: String
   },
+  color: {
+    type: String
+  },
   price: {
     type: Number,
     required: [true, `Email can't be empty`],
