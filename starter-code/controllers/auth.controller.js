@@ -98,9 +98,7 @@ module.exports.logout = (req, res, next) => {
       if (error) {
           next(error);
       } else {
-          req.logout();
-          //Render o redirect?¿? auth/login o /login?¿?
-          res.render("auth/login");
+          res.redirect("/home");
       }
   });
 };

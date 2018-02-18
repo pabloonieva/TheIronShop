@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>
-        Basic Auth
+        The Iron Shop
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
@@ -19,6 +19,43 @@
               <hr>
             </div>
         </div>
+        <% if (typeof(session) === 'undefined') { %>
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <hr>
+                    <a href="/login" class="btn btn-primary">Log in</a>
+                    <a href="/signup" class="btn btn-primary">Sign up</a>
+                    <hr>
+                </div>
+            </div>
+
+        <% }else{ %>
+       
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                <a href="/logout" class="btn btn-primary">Log out</a>
+                </div>
+                <div>
+                    <p>Hello <%=session.name%> </p>
+                </div>
+            </div>
+
+            <% if (session.isAdmin) { %>
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <hr>
+                        <a href="/home" class="btn btn-primary">Admin: Go HOME</a>
+                        <a href="/edit" class="btn btn-primary">Admin: Go EDIT</a>
+
+                        <hr>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+
+
+
+
         <%- body -%>
 
         <% if (typeof(session) != 'undefined') { %>
