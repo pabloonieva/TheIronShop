@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const Controller = require('../controllers/shoppingCart.controller');
+const shoppingCartController = require('../controllers/shoppingCart.controller');
+
+
+router.get('/shoppingCart', shoppingCartController.showShoppingCart);
+router.get('/add-to-cart/:name/:price', shoppingCartController.addToCart);
 
 /*
-router.get('/shoppingCart', shoppingCartController.showUser);
 router.post('/shoppingCart', shoppingCartController.buyProducts);
 */
 

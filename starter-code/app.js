@@ -44,7 +44,7 @@ require('./configs/passport.config').setup(passport);
 //Requerimos las rutas creadas
 const auth = require('./routes/auth.routes');
 const products = require('./routes/products.routes');
-//const shoppingCart = require('./routes/shoppingCart.routes');
+const shoppingCart = require('./routes/shoppingCart.routes');
 
 const app = express();
 
@@ -82,8 +82,11 @@ app.use(session({
 
 app.use('/', auth);
 app.use('/', products);
+app.use('/', shoppingCart);
 
-// app.use('/xxxx', shoppingCart);
+// app.get('/', (req, res, next) => {
+//   res.redirect("/home");
+// })
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

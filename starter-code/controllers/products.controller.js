@@ -3,6 +3,7 @@ const Product = require('../models/product.model');
 const expressFlash = require('express-flash');
 
 
+
 module.exports.showUser = (req, res, next) => {
   Product.find({}, (err, listOfProducts) => {
     if (err) { return next(err); }
@@ -55,6 +56,7 @@ module.exports.updateProduct = (req, res, next) => {
   //     product.edit: true;
   //   };
 };
+
 
 /*
 module.exports.showUser = (req, res, next) => {

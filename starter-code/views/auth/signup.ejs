@@ -47,7 +47,7 @@
         <br>
 
         Email:<br>
-        <input class="form-control"  type="text" name="email" placeholder="Email" value="<%= typeof user != 'undefined' && user.email ? user.email : '' %>" >
+        <input class="alert alert-dark"  type="text" name="email" placeholder="Email" value="<%= typeof user != 'undefined' && user.email ? user.email : '' %>" >
         <% if (typeof(error) != 'undefined' && error.email) { %>
             <label> <%= error.email %> </label>
         <% } %>
