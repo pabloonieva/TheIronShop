@@ -5,7 +5,7 @@ const expressFlash = require('express-flash');
 const configPassport = require('../configs/passport.config');
 
 module.exports.signup = (req, res, next) => {
-    res.render('auth/signup');
+    res.render('auth/signup', {url: req.originalUrl});
 };
 
 module.exports.doSignup = (req, res, next) => {
@@ -14,7 +14,8 @@ module.exports.doSignup = (req, res, next) => {
             if (user != null){
                 res.render('auth/signup', {
                     email: req.body.email,
-                    error: {email: `Email already exists`}
+                    error: {email: `Email already exists`},
+                    url: req.originalUrl
                 });
 
             }else{
@@ -35,7 +36,8 @@ module.exports.doSignup = (req, res, next) => {
                     if (error instanceof mongoose.Error.ValidationError) {
                         res.render('auth/signup', {
                         user: req.body.email,
-                        error: error.errors
+                        error: error.errors,
+                        url: req.originalUrl
                     });
                     } else {
                         next(error);
@@ -49,6 +51,7 @@ module.exports.login = (req, res, next) => {
     res.render('auth/login',{
         //No me va flash
         //flash: req.flash()
+        url: req.originalUrl
     });
 };
 module.exports.doLogin = (req, res, next) => {
@@ -60,14 +63,15 @@ module.exports.doLogin = (req, res, next) => {
         error: {
                   email: email ? '' : 'Email is required',
                   password: password ? '' : 'Password is required'
-              }
+              },
+        url: req.originalUrl
       });
     } else {
       passport.authenticate('local-auth', (error, user, validation) => {
         if(error){
           next(error);
         } else if(!user){
-            res.render('auth/login', {error: validation});
+            res.render('auth/login', {error: validation, url: req.originalUrl});
         } else{
             req.login(user,(error) => {
               if(error){

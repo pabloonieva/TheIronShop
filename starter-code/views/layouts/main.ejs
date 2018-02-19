@@ -14,57 +14,50 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 text-center">
-              <hr>
+                <hr>
                 <img class="logo" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/4017/s300/logo-ironhack-blue.png" alt="logoIH" height="100 " width="100">
-              <hr>
+                <hr>
             </div>
         </div>
-        <% if (typeof(session) === 'undefined') { %>
-            <div class="row">
-                <div class="col-xs-12 text-center">
-                    <hr>
-                    <a href="/login" class="btn btn-primary">Log in</a>
-                    <a href="/signup" class="btn btn-primary">Sign up</a>
-                    <hr>
-                </div>
-            </div>
+        <% if (url != "/login" && url != "/signup") { %>
 
-        <% }else{ %>
-       
-            <div class="row">
-                <div class="col-xs-12 text-center">
-                <a href="/logout" class="btn btn-primary">Log out</a>
-                </div>
-                <div>
-                    <p>Hello <%=session.name%> </p>
-                </div>
-            </div>
-
-            <% if (session.isAdmin) { %>
+            <% if (typeof(session) === 'undefined') { %>
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         <hr>
-                        <a href="/home" class="btn btn-primary">Admin: Go HOME</a>
-                        <a href="/edit" class="btn btn-primary">Admin: Go EDIT</a>
-
+                        <a href="/login" class="btn btn-primary">Log in</a>
+                        <a href="/signup" class="btn btn-primary">Sign up</a>
                         <hr>
                     </div>
                 </div>
+
+            <% }else{ %>
+        
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                    <a href="/logout" class="btn btn-primary">Log out</a>
+                    </div>
+                    <div>
+                        <p>Hello <%=session.name%> </p>
+                    </div>
+                </div>
+
+                <% if (session.isAdmin) { %>
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <hr>
+                            <a href="/home" class="btn btn-primary">Admin: Go HOME</a>
+                            <a href="/edit" class="btn btn-primary">Admin: Go EDIT</a>
+
+                            <hr>
+                        </div>
+                    </div>
+                <% } %>
             <% } %>
         <% } %>
 
-
-
-
         <%- body -%>
 
-        <% if (typeof(session) != 'undefined') { %>
-            <div class="row">
-                <div class="col-xs-12 text-center">
-                    <a href="/logout" class="btn btn-primary">Logout</a>
-                </div>
-            </div>
-        <% } %>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
