@@ -19,7 +19,7 @@
                 <hr>
             </div>
         </div>
-        <% if (url != "/login" && url != "/signup") { %>
+<!--         if (url != "/login" && url != "/signup") {  -->
 
             <% if (typeof(session) === 'undefined') { %>
                 <div class="row">
@@ -27,6 +27,9 @@
                         <hr>
                         <a href="/login" class="btn btn-primary">Log in</a>
                         <a href="/signup" class="btn btn-primary">Sign up</a>
+                        <a href="/shoppingCart" class="btn btn-info btn-lg">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                        </a>
                         <hr>
                     </div>
                 </div>
@@ -36,6 +39,9 @@
                 <div class="row">
                     <div class="col-xs-12 text-center">
                     <a href="/logout" class="btn btn-primary">Log out</a>
+                    <a href="/shoppingCart" class="btn btn-info btn-lg">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                    </a>
                     </div>
                     <div>
                         <p>Hello <%=session.name%> </p>
@@ -54,7 +60,7 @@
                     </div>
                 <% } %>
             <% } %>
-        <% } %>
+<!--         }  -->
 
         <%- body -%>
 

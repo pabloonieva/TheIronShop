@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Product = require('../models/product.model');
 const expressFlash = require('express-flash');
+const shoppingCart = require('../models/shoppingCart.model');
+
 
 
 module.exports.showUser = (req, res, next) => {
@@ -54,6 +56,16 @@ module.exports.updateProduct = (req, res, next) => {
   // Product.findOne({ _id: productId }).exec(function(err, product) {
   //     product.edit: true;
   //   };
+};
+
+module.exports.addToCart= (req, res, next) => {
+  const productName = req.params.name;
+  Product.findOne({name: productName}, (err, product) => {
+    if (err) { return next(err); }
+
+
+
+  });
 };
 
 /*

@@ -7,11 +7,12 @@ const cartSchema = new mongoose.Schema({
     productArray:  {
     type: Array
     },
-    productQuantity:  {
-        type: Number
-    },
     totalCartPrice: {
-        type: Number
+        type: Number,
+        default: 0
+    },
+    userEmail: {
+        type: Array
     }
 }, { timestamps: true });
 

@@ -5,6 +5,6 @@
 <div class="col-md-2 column productbox">
     <img src="<%= product.image %>" class="img-responsive">
     <div class="producttitle"><%=product.name%></div>
-    <div class="productprice"><div class="pull-right"><a href="#" class="btn btn-danger btn-sm" role="button">BUY</a></div><div class="pricetext"><%=product.price%>€</div></div>
+    <div class="productprice"><div class="pull-right"><a href="/add-to-cart/<%= product.name %>" class="btn btn-danger btn-sm" role="button">Add to cart</a></div><div class="pricetext"><%=product.price%>€</div></div>
 </div>
 <% }) %>

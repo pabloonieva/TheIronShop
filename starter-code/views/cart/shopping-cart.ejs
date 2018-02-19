@@ -1,0 +1,31 @@
+<%if(typeof(session) === 'undefined'){%>
+
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <hr>
+        <div class="panel panel-default">
+          <div class="panel-heading text-center">
+            Dont't have an IronAccount?
+            <a href="/signup">Sign up to enter your credentials</a>
+          </div>
+        </div>
+      </div>
+
+<%}else{%>
+
+    <div>
+        <span>This is your shipment information></span>
+        <br>    
+        <span>Nombre: <%=session.name%></span>
+        <br>
+        <span>Email: <%=session.email%></span>
+        <br>
+        <span>Adress: <%=session.address%></span>
+        <br>
+        <span>Payment method: <%=session.paymentMethod%></span>
+        <br>
+    </div>
+    
+<%}%>
+<div>
+    
+</div>
