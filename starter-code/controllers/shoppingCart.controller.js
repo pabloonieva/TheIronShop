@@ -3,31 +3,53 @@ const shoppingCart = require('../models/shoppingCart.model');
 
 module.exports.showShoppingCart = (req, res, next) => {
 
-    res.render('cart/shopping-cart', {
-        session: req.session.currentUser,
+//Aquí tenemos que trabajar con las cookies para poder pasar a la vista carrito la info de carrito de un no-logueado
+    
+    if(typeof(req.session.currentUser)!='undefined'){
 
-    });
+        const userEmail = req.session.currentUser.email;
+    
+        shoppingCart.findOne({userEmail:userEmail}, (err, cart) => {
+            if (err) { return next(err); }
+    
+            if (cart) {
+                res.render('cart/shopping-cart', {
+                    session: req.session.currentUser,
+                    shoppingCart: cart
+                });
+
+            }else{
+                console.log("Carrito not found");
+                res.redirect("/home");
+            }
+        });
+    }else{
+        console.log("A darte de alta, jefe");
+        res.redirect("/signup");
+    }
 };
 
 module.exports.addToCart = (req, res, next) => {
-    
+
     const productNameAndPrice = {
         name: req.params.name,
         price: parseFloat(req.params.price)
     }
 
-    if(tyoeOf(session)!='undefined'){
+//Aquí tenemos que trabajar con las cookies para poder guardar carritos de no-logueados y trabajar con ellos
+
+    if(typeof(req.session.currentUser)!='undefined'){
 
         const userEmail = req.session.currentUser.email;
     
-        shoppingCart.findOne({userEmail:userEmail}, (err, email) => {
+        shoppingCart.findOne({userEmail:userEmail}, (err, cart) => {
             if (err) { return next(err); }
     
-            if (email) {
-                email.productsArray.push(productNameAndPrice);
-                email.totalCartPrice += productNameAndPrice.price;
-                email.save();
-                console.log(email);
+            if (cart) {
+                cart.productsArray.push(productNameAndPrice);
+                cart.totalCartPrice += productNameAndPrice.price;
+                cart.save();
+                console.log(cart);
     
             }else{
     
@@ -42,7 +64,7 @@ module.exports.addToCart = (req, res, next) => {
         });
         res.redirect('/home');
     }else{
-        redirect("/signup");
+        res.redirect("/signup");
     }
    
         

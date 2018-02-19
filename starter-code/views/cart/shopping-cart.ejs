@@ -22,10 +22,20 @@
         <span>Adress: <%=session.address%></span>
         <br>
         <span>Payment method: <%=session.paymentMethod%></span>
+        <br><br>
+        <br>
         <br>
     </div>
     
 <%}%>
 <div>
-    
+    <p>CARRITO DE PRODUCTOS</p>
+    <% shoppingCart.productsArray.forEach((productObject) => { %>
+        <span>Product name: <%=productObject.name%></span>
+        <span>Product price: <%=productObject.price%></span>
+        <br>
+    <%}); %>
+    <br>
+    <span>TOTAL PRICE: <%=shoppingCart.totalCartPrice%></span>
+    <br>
 </div>
