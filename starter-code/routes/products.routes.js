@@ -7,7 +7,6 @@ router.get('/home', productsController.showUser);
 router.get('/edit', productsController.showAdmin);
 router.post('/edit', productsController.addProduct);
 router.get('/updateProduct/:id', productsController.updateProduct);
-router.get('/add-to-cart/:name', productsController.addToCart);
 
 //router.post('/updateProduct', productsController.updateProduct);
 /*
