@@ -6,7 +6,7 @@ const productsController = require('../controllers/products.controller');
 router.get('/home', productsController.showUser);
 router.get('/edit', productsController.showAdmin);
 router.post('/edit', productsController.addProduct);
-router.post('/updateProduct', productsController.updateProduct);
+router.post('/updateProduct/:id', productsController.updateProduct);
 
 //router.post('/updateProduct', productsController.updateProduct);
 /*

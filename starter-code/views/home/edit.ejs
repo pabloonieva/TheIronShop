@@ -15,11 +15,13 @@
     <tbody>
       <% listOfProducts.forEach((product) => { %>
       <tr>
-          <td class='hide'><input value="<%=product.name%>"></input></td>
-          <td class='hide'><input value="<%=product.image%>"></input></td>
-          <td class='hide'><input value="<%=product.color%>"></input></td>
-          <td class='hide'><input value="<%=product.price%>"></input></td>
-          <td class='hide'><button action="/updateProduct" method="POST">Save</button></td>
+          <form action="/updateProduct/<%=product._id%>" method="POST">
+            <td class='hide'><input value="<%=product.name%>" name="name"></input></td>
+            <td class='hide'><input value="<%=product.image%>" name="image"></input></td>
+            <td class='hide'><input value="<%=product.color%>" name="color"></input></td>
+            <td class='hide'><input value="<%=product.price%>" name="price"></input></td>
+            <td class='hide'><button type="submit" >Save</button></td>
+          </form>
           <td><%=product.name%></td>
           <td><%=product.image%></td>
           <td><%=product.color%></td>

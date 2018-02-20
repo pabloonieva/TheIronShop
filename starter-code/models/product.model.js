@@ -18,10 +18,6 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: [true, `Email can't be empty`],
     min: 0
-  },
-  edit: {
-    type: Boolean,
-    default: false
   }
 });
 

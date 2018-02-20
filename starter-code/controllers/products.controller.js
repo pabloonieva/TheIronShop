@@ -49,17 +49,35 @@ module.exports.addProduct = (req, res, next) => {
 };
 
 module.exports.updateProduct = (req, res, next) => {
-  console.log("Updating product");
-  next();
+  productId = req.params.id;
+  console.log(productId);
+  console.log("Entro");
+
+  var update = {
+    name: req.body.name,
+    image: req.body.image,
+    color: req.body.color,
+    price: req.body.price,
+    };
+  Product.findOne({ _id:productId }, (err, editedProduct) => {
+    console.log(editedProduct);
+    console.log(update);
+    editedProduct.name = update.name;
+    editedProduct.image = update.image;
+    editedProduct.color = update.color;
+    editedProduct.price = update.price;
+    editedProduct.save();
+    console.log(editedProduct);
+    res.redirect("/edit");
+  });
 
 
 
-  // const productId = req.params.id;
-  // console.log(req.params.id);
-  // Product.update( {_id: productId } , { $inc: { edit: true} } );
-  // Product.findOne({ _id: productId }).exec(function(err, product) {
-  //     product.edit: true;
-  //   };
+
+  //   , update, (err, product) => {
+  //     if(err){ return next(err); }
+  //     res.redirect('/edit');
+  // });
 };
 
 
