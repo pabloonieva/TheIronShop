@@ -4,67 +4,55 @@
     <title>
         The Iron Shop
     </title>
+    <script type="text/javascript" src="javascript/editProduct.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
         crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <script type="text/javascript" src="javascript/editProduct.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 text-center">
-                <hr>
-                <img class="logo" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/4017/s300/logo-ironhack-blue.png" alt="logoIH" height="100 " width="100">
-                <hr>
+
+    <div class = "text-center">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between align-middle" style="background-color: #eff1f3">
+            <div>
+                <a class="navbar-brand text-white" href="/home">
+                    <img src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/4017/s300/logo-ironhack-blue.png" width="48" height="50" class="d-inline-block align-middle">
+                </a>
+                <h4 class="navbar-text align-middle">Iron Shop</h4>
             </div>
-        </div>
-<!--         if (url != "/login" && url != "/signup") {  -->
+
+            <!--         if (url != "/login" && url != "/signup") {  -->
 
             <% if (typeof(session) === 'undefined') { %>
-                <div class="row">
-                    <div class="col-xs-12 text-center">
-                        <hr>
-                        <a href="/login" class="btn btn-primary">Log in</a>
-                        <a href="/signup" class="btn btn-primary">Sign up</a>
-                        <a href="/shoppingCart" class="btn btn-info btn-lg">
-                            <span class="glyphicon glyphicon-shopping-cart"></span>
-                        </a>
-                        <hr>
-                    </div>
+                
+                <div class = "text-center align-middle">
+                    <a href="/login" class="btn btn-outline-secondary">Log in</a>
+                    <a href="/signup" class="btn btn-outline-secondary">Sign up</a>
+                    <a href="/shoppingCart" class="btn btn-outline-secondary">Shopping Cart</a>
                 </div>
 
             <% }else{ %>
-
-                <div class="row">
-                    <div class="col-xs-12 text-center">
-                    <a href="/logout" class="btn btn-primary">Log out</a>
-                    <a href="/shoppingCart" class="btn btn-info btn-lg">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>
-                    </a>
-                    </div>
-                    <div>
-                        <p>Hello <%=session.name%> </p>
-                    </div>
-                </div>
-
                 <% if (session.isAdmin) { %>
-                    <div class="row">
-                        <div class="col-xs-12 text-center">
-                            <hr>
-                            <a href="/home" class="btn btn-primary">Admin: Go HOME</a>
-                            <a href="/edit" class="btn btn-primary">Admin: Go EDIT</a>
-
-                            <hr>
-                        </div>
+                    <div class = "text-center align-middle">
+                        <a href="/home" class="btn btn-outline-secondary">Home Page</a>
+                        <a href="/edit" class="btn btn-outline-secondary">Edit Page</a>
                     </div>
                 <% } %>
-            <% } %>
-<!--         }  -->
 
-        <%- body -%>
+                <div class = "text-center align-middle">
+                    <div class= "d-inline-block align-middle">
+                      <h7 class="navbar-text" margin-right = 4px>Hello <%=session.name%> </h7>
+                    </div>
+                    <a href="/logout" class="btn btn-outline-secondary">Log out</a>
+                    <a href="/shoppingCart" class="fa fa-cart">Shopping Cart</a>
+                </div>
+            <% } %>
+        </nav> 
+    </div>  
+    <!--         }  -->
+
+    <%- body -%>
 
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
