@@ -26,8 +26,8 @@ module.exports.showAdmin = (req, res, next) => {
             listOfProducts:listOfProducts,
             session:req.session.currentUser,
             url: req.originalUrl
-          });  
-        } 
+          });
+        }
     }else{
       res.redirect("http://www.i-fuckyou.com/");
     }
@@ -49,9 +49,14 @@ module.exports.addProduct = (req, res, next) => {
 };
 
 module.exports.updateProduct = (req, res, next) => {
-  const productId = req.params.id;
-  console.log(req.params.id);
-  Product.update( {_id: productId } , { $inc: { edit: true} } );
+  console.log("Updating product");
+  next();
+
+
+
+  // const productId = req.params.id;
+  // console.log(req.params.id);
+  // Product.update( {_id: productId } , { $inc: { edit: true} } );
   // Product.findOne({ _id: productId }).exec(function(err, product) {
   //     product.edit: true;
   //   };

@@ -14,22 +14,17 @@
     </thead>
     <tbody>
       <% listOfProducts.forEach((product) => { %>
-        <%=product.edit%>
       <tr>
-        <% if(product.edit) { %>
-          <td><input><%=product.name%></input></td>
-          <td><input><%=product.image%></input></td>
-          <td><input><%=product.color%></input></td>
-          <td><input><%=product.price%></input></td>
-          <td><button action="/updateProduct" method="POST">Save</button></td>
-        <% } else { %>
+          <td class='hide'><input value="<%=product.name%>"></input></td>
+          <td class='hide'><input value="<%=product.image%>"></input></td>
+          <td class='hide'><input value="<%=product.color%>"></input></td>
+          <td class='hide'><input value="<%=product.price%>"></input></td>
+          <td class='hide'><button action="/updateProduct" method="POST">Save</button></td>
           <td><%=product.name%></td>
-          <td><%=product.image%> </td>
+          <td><%=product.image%></td>
           <td><%=product.color%></td>
           <td><%=product.price%></td>
-          <td><a href="/updateProduct/<%= product.id %>" type="btn btn-primary">Edit</a></td>
-          <% product.edit = true %>
-        <% } %>
+          <td><button class="editButton" type="btn btn-primary">Edit</button></td>
       </tr>
       <% }) %>
     </tbody>
