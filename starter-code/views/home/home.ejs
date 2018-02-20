@@ -1,10 +1,22 @@
+<hr>
+<div class="container bootstrap snipets">
+    <h1 class="text-center text-muted">Product catalog</h1>
 
-<div class="text-center h3" >Ironhack Products</div>
-<br><hr><br>
-<% listOfProducts.forEach((product) => { %>
-<div class="col-md-2 column productbox">
-    <img src="<%= product.image %>" class="img-responsive">
-    <div class="producttitle"><%=product.name%></div>
-    <div class="productprice"><div class="pull-right"><a href="/add-to-cart/<%= product.name %>/<%= product.price %>" class="btn btn-danger btn-sm" role="button">Add to cart</a></div><div class="pricetext"><%=product.price%>€</div></div>
+    <hr>
+    <br>
+
+    <div class="row flow-offset-1"></div>
+        <% listOfProducts.forEach((product) => { %>
+        <div class="row flow-offset-1">
+            <div class="col-xs-6 col-md-4">
+                <div class="product tumbnail thumbnail-3"><img src="<%= product.image %>"</a>
+                <div class="caption">
+                    <h6><%= product.name %></h6><span class="price">
+                    <span class="price sale">$<%= product.price %></span>
+                    <a href="/add-to-cart/<%= product.name %>/<%= product.price %>" class="fa fa-cart">Shopping Cart</a>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
 </div>
-<% }) %>
