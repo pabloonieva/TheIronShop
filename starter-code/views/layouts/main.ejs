@@ -2,14 +2,15 @@
 <html>
 <head>
     <title>
-        The Iron Shop
+        The Ironshop
     </title>
+    <link rel="shortcut icon" href="/favicon.ico" />
     <script type="text/javascript" src="javascript/editProduct.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
         crossorigin="anonymous">
-        
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
@@ -22,13 +23,13 @@
                 <a class="navbar-brand text-white" href="/home">
                     <img src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/4017/s300/logo-ironhack-blue.png" width="48" height="50" class="d-inline-block align-middle">
                 </a>
-                <h4 class="navbar-text align-middle">Iron Shop</h4>
+                <h4 class="navbar-text align-middle">Ironshop</h4>
             </div>
 
             <!--         if (url != "/login" && url != "/signup") {  -->
 
             <% if (typeof(session) === 'undefined') { %>
-                
+
                 <div class = "text-center align-middle">
                     <a href="/login" class="btn btn-outline-secondary">Log in</a>
                     <a href="/signup" class="btn btn-outline-secondary">Sign up</a>
@@ -51,8 +52,8 @@
                     <a href="/shoppingCart" class="fa fa-cart">Shopping Cart</a>
                 </div>
             <% } %>
-        </nav> 
-    </div>  
+        </nav>
+    </div>
     <!--         }  -->
 
     <%- body -%>
