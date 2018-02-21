@@ -70,16 +70,17 @@ module.exports.updateProduct = (req, res, next) => {
     console.log(editedProduct);
     res.redirect("/edit");
   });
-
-
-
-
-  //   , update, (err, product) => {
-  //     if(err){ return next(err); }
-  //     res.redirect('/edit');
-  // });
 };
+module.exports.deleteProduct = (req, res, next) => {
+  const productId = req.params.id;
+  console.log(productId);
+  console.log("Heeeeeeeello");
 
+  Product.findByIdAndRemove(productId, (err, product) => {
+    if (err){ return next(err); }
+    res.redirect('/edit');
+  });
+};
 
 /*
 module.exports.showUser = (req, res, next) => {
