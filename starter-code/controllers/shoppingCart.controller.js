@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const shoppingCart = require('../models/shoppingCart.model');
+const ShoppingCart = require('../models/shoppingCart.model');
+const Product = require('../models/product.model');
+
 
 module.exports.showShoppingCart = (req, res, next) => {
 
@@ -9,10 +11,11 @@ module.exports.showShoppingCart = (req, res, next) => {
 
         const userEmail = req.session.currentUser.email;
     
-        shoppingCart.findOne({userEmail:userEmail}, (err, cart) => {
+        ShoppingCart.findOne({userEmail:userEmail}, (err, cart) => {
             if (err) { return next(err); }
     
             if (cart) {
+                console.log(cart);
                 res.render('cart/shopping-cart', {
                     session: req.session.currentUser,
                     shoppingCart: cart
@@ -31,42 +34,44 @@ module.exports.showShoppingCart = (req, res, next) => {
 
 module.exports.addToCart = (req, res, next) => {
 
-    const productNameAndPrice = {
-        name: req.params.name,
-        price: parseFloat(req.params.price)
-    }
+    const pushedToCartProductName = req.params.name;
 
-//Aquí tenemos que trabajar con las cookies para poder guardar carritos de no-logueados y trabajar con ellos
+    Product.findOne({name:pushedToCartProductName}, (err, pushedToCartProduct) => {
 
-    if(typeof(req.session.currentUser)!='undefined'){
+        console.log(pushedToCartProduct);
+        pushedToCartProduct = pushedToCartProduct;
+    
 
-        const userEmail = req.session.currentUser.email;
-    
-        shoppingCart.findOne({userEmail:userEmail}, (err, cart) => {
-            if (err) { return next(err); }
-    
-            if (cart) {
-                cart.productsArray.push(productNameAndPrice);
-                cart.totalCartPrice += productNameAndPrice.price;
-                cart.save();
-                console.log(cart);
-    
-            }else{
-    
-                const newShoppingCart = new shoppingCart({
-                    userEmail: userEmail
-                });
-                newShoppingCart.productsArray.push(productNameAndPrice);
-                newShoppingCart.save();
-                newShoppingCart.totalCartPrice = productNameAndPrice.price;
-                console.log(newShoppingCart);
-            }
-        });
-        res.redirect('/home');
-    }else{
-        res.redirect("/signup");
-    }
-   
+        if(typeof(req.session.currentUser)!='undefined'){
+
+            const userEmail = req.session.currentUser.email;
         
+            ShoppingCart.findOne({userEmail:userEmail}, (err, cart) => {
+                if (err) { return next(err); }
+        
+                if (cart) {
+                    cart.productsArray.push(pushedToCartProduct);
+                    cart.totalCartPrice += pushedToCartProduct.price;
+                    cart.save();
+                    console.log(cart);
+        
+                }else{
+        
+                    const newShoppingCart = new ShoppingCart({
+                        userEmail: userEmail
+                    });
+                    newShoppingCart.productsArray.push(pushedToCartProduct);
+                    newShoppingCart.save();
+                    newShoppingCart.totalCartPrice = pushedToCartProduct.price;
+                    console.log(newShoppingCart);
+                }
+            });
+            //Flash product added to cart
+            res.redirect('/home');
+        }else{
+            //Message: need to login to purchase
+            res.redirect("/signup");
+        }
+    });    
 };
 
