@@ -18,7 +18,8 @@ module.exports.showShoppingCart = (req, res, next) => {
                 console.log(cart);
                 res.render('cart/shopping-cart', {
                     session: req.session.currentUser,
-                    shoppingCart: cart
+                    shoppingCart: cart,
+                    url:req.originalUrl
                 });
 
             }else{
@@ -27,8 +28,8 @@ module.exports.showShoppingCart = (req, res, next) => {
             }
         });
     }else{
-        console.log("A darte de alta, jefe");
-        res.redirect("/signup");
+        //Deberíamos imprimir mensaje: para acceder carro log in
+        res.redirect("/login");
     }
 };
 
@@ -70,7 +71,7 @@ module.exports.addToCart = (req, res, next) => {
             res.redirect('/home');
         }else{
             //Message: need to login to purchase
-            res.redirect("/signup");
+            res.redirect("/login");
         }
     });    
 };

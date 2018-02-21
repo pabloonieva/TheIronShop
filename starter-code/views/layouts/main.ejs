@@ -27,43 +27,44 @@
                 <h4 class="navbar-text align-middle">Ironshop</h4>
             </div>
 
-            <!--         if (url != "/login" && url != "/signup") {  -->
+            <% if (url != "/login" && url != "/signup") {  %>
 
-            <% if (typeof(session) === 'undefined') { %>
+                <% if (typeof(session) === 'undefined') { %>
 
-                <div>
-                    <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
-                </div>
-
-                <div class = "text-center align-middle">
-                    <a href="/login" class="btn btn-outline-secondary">Log in</a>
-                    <a href="/signup" class="btn btn-outline-secondary">Sign up</a>
-                    <a href="/shoppingCart" class="btn btn-outline ironColor"><i class="fas fa-cart-arrow-down"></i></a>
-                </div>
-
-            <% }else{ %>
-                <% if (session.isAdmin) { %>
-                    <div class = "text-center align-middle">
+                    <div>
                         <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
-                        <a href="/edit" class="btn btn-outline-secondary">Edit Page</a>
+                    </div>
+
+                    <div class = "text-center align-middle">
+                        <a href="/login" class="btn btn-outline-secondary">Log in</a>
+                        <a href="/signup" class="btn btn-outline-secondary">Sign up</a>
+                        <a href="/shoppingCart" class="btn btn-outline ironColor"><i class="fas fa-cart-arrow-down"></i></a>
+                    </div>
+
+                <% }else{ %>
+                    <% if (session.isAdmin) { %>
+                        <div class = "text-center align-middle">
+                            <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
+                            <a href="/edit" class="btn btn-outline-secondary">Control Panel</a>
+                        </div>
+                    <% } %>
+                    <% if (!session.isAdmin) { %>
+                        <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
+                    <% } %>
+                    <div class = "text-center align-middle">
+                        <div class= "d-inline-block align-middle">
+                        <h7 class="navbar-text" margin-right = 4px>Hello <%=session.name%>&nbsp&nbsp</h7>
+                        </div>
+                        <a href="/shoppingCart" class="btn btn-outline ironColor mr-2"><i class="fas fa-cart-arrow-down"></i></a>
+                        <a href="/logout" class="btn btn-outline-secondary"><i class="fas fa-sign-out-alt"></i></a>
                     </div>
                 <% } %>
-
-                <div>
-                    <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
-                </div>
-
-                <div class = "text-center align-middle">
-                    <div class= "d-inline-block align-middle">
-                      <h7 class="navbar-text" margin-right = 4px>Hello <%=session.name%>&nbsp&nbsp</h7>
-                    </div>
-                    <a href="/shoppingCart" class="btn btn-outline ironColor mr-2"><i class="fas fa-cart-arrow-down"></i></a>
-                    <a href="/logout" class="btn btn-outline-secondary"><i class="fas fa-sign-out-alt"></i></a>
-                </div>
-            <% } %>
+            <%}  else { %>
+                <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
+                <% } %>
         </nav>
     </div>
-    <!--         }  -->
+    
 
     <%- body -%>
 
