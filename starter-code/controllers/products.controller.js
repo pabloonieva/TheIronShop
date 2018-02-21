@@ -7,6 +7,7 @@ const expressFlash = require('express-flash');
 module.exports.showUser = (req, res, next) => {
   Product.find({}, (err, listOfProducts) => {
     if (err) { return next(err); }
+    console.log(listOfProducts);
     res.render('home/home', {
       listOfProducts:listOfProducts,
       session:req.session.currentUser,
@@ -59,6 +60,7 @@ module.exports.updateProduct = (req, res, next) => {
     color: req.body.color,
     price: req.body.price,
     };
+    
   Product.findOne({ _id:productId }, (err, editedProduct) => {
     console.log(editedProduct);
     console.log(update);
@@ -70,16 +72,17 @@ module.exports.updateProduct = (req, res, next) => {
     console.log(editedProduct);
     res.redirect("/edit");
   });
-
-
-
-
-  //   , update, (err, product) => {
-  //     if(err){ return next(err); }
-  //     res.redirect('/edit');
-  // });
 };
+module.exports.deleteProduct = (req, res, next) => {
+  const productId = req.params.id;
+  console.log(productId);
+  console.log("Heeeeeeeello");
 
+  Product.findByIdAndRemove(productId, (err, product) => {
+    if (err){ return next(err); }
+    res.redirect('/edit');
+  });
+};
 
 /*
 module.exports.showUser = (req, res, next) => {
