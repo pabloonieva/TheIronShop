@@ -11,6 +11,7 @@
           <th>Color</th>
           <th>Price</th>
           <th>Edit</th>
+          <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +29,9 @@
           <td><%=product.color%></td>
           <td><%=product.price%></td>
           <td><button class="editButton" type="btn btn-primary">Edit</button></td>
+          <td><form action="/deleteProduct/<%= product._id %>" method="POST">
+            <button type="submit">Delete</button></form>
+          </td>
       </tr>
       <% }) %>
     </tbody>
@@ -57,3 +61,4 @@
     <button type="submit" class="col-sm-4">Save product</input>
   </form>
 </div>
+<br><br>
