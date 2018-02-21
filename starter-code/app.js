@@ -84,9 +84,9 @@ app.use('/', auth);
 app.use('/', products);
 app.use('/', shoppingCart);
 
-// app.get('/', (req, res, next) => {
-//   res.redirect("/home");
-// })
+app.get('/', (req, res, next) => {
+  res.redirect("/home");
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
