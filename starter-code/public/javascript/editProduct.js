@@ -2,7 +2,8 @@
 //var inputs = document.getElementsByClassName('hidden');
 $(document).ready(function(){
   $(".editButton").click(function(){
-    $(this).parent().siblings().toggleClass("hide");
-    $(this).parent().toggleClass("hide");
+    console.log("hola");
+    $(this).parent().siblings().toggleClass("d-none");
+    $(this).parent().toggleClass("d-none");
   });
 });
