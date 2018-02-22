@@ -63,20 +63,20 @@ module.exports.updateProduct = (req, res, next) => {
     
   Product.findOne({ _id:productId }, (err, editedProduct) => {
     console.log(editedProduct);
-    console.log(update);
+    //console.log(update);
     editedProduct.name = update.name;
     editedProduct.image = update.image;
     editedProduct.color = update.color;
     editedProduct.price = update.price;
     editedProduct.save();
-    console.log(editedProduct);
+    //console.log(editedProduct);
     res.redirect("/edit");
   });
 };
 module.exports.deleteProduct = (req, res, next) => {
   const productId = req.params.id;
-  console.log(productId);
-  console.log("Heeeeeeeello");
+  //console.log(productId);
+  //console.log("Heeeeeeeello");
 
   Product.findByIdAndRemove(productId, (err, product) => {
     if (err){ return next(err); }
