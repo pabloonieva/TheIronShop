@@ -27,13 +27,14 @@
                 <h4 class="navbar-text align-middle">Ironshop</h4>
             </div>
 
-            <% if (url != "/login" && url != "/signup") {  %>
+            <!-- < if (url != "/login" && url != "/signup") {  %> -->
 
                 <% if (typeof(session) === 'undefined') { %>
-
-                    <div>
-                        <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
-                    </div>
+                    <!-- < if (url != "/home") {  %> -->
+                        <div>
+                            <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
+                        </div>
+                    <!-- < } %>   -->
 
                     <div class = "text-center align-middle">
                         <a href="/login" class="btn btn-outline-secondary">Log in</a>
@@ -44,12 +45,17 @@
                 <% }else{ %>
                     <% if (session.isAdmin) { %>
                         <div class = "text-center align-middle">
-                            <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
-                            <a href="/edit" class="btn btn-outline-secondary">Control Panel</a>
+                            <!-- < if (url != "/home") {  %> -->
+                                <a href="/edit" class="btn btn-outline-secondary">Control Panel</a>
+                            <!-- < } else { %>   -->
+                                <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
+                            <!-- < } %>   -->
                         </div>
                     <% } %>
                     <% if (!session.isAdmin) { %>
-                        <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
+                    <!-- < if (url != "/home") {  %> -->
+                            <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
+                    <!-- < } %>   -->
                     <% } %>
                     <div class = "text-center align-middle">
                         <div class= "d-inline-block align-middle">
@@ -59,9 +65,9 @@
                         <a href="/logout" class="btn btn-outline-secondary"><i class="fas fa-sign-out-alt"></i></a>
                     </div>
                 <% } %>
-            <%}  else { %>
+            <!-- <}  else { %>
                 <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
-                <% } %>
+                < } %> -->
         </nav>
     </div>
     
