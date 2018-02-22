@@ -24,29 +24,43 @@
         
     <div class="text-center mt-5">
         <div class = "w-75 d-inline-block">
-            <h6 class="mb-4"><%=session.name%>'s Shopping Cart</h6>
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <tbody>
-                    <% shoppingCart.productsArray.forEach((productObject) => { %>    
-                        <tr>
-                            <td style="vertical-align:middle"><img src="<%=productObject.image%>" style="width:40px"></td>
-                            <td style="vertical-align:middle"><%=productObject.name%></td>
-                            <td style="vertical-align:middle"><%=productObject.color%></td>
-                            <td style="vertical-align:middle"><%=productObject.price%></td>
-                            <td style="vertical-align:middle"><form action="/removeFromCart/<%=productObject.name%>" method="GET">
-                                <button class="editButton btn btn-sm btn-outline-secondary" type="submit"><i class="far fa-trash-alt"></i></button></form>
-                            </td>
-                        </tr>
-                        </tbody>
-                    <% }); %>    
-                </table>
+
+            <% if(shoppingCart.productsArray.length != 0) { %>    
+
+             <h6 class="mb-4"><%=session.name%>'s Shopping Cart</h6>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tbody>
+                            <% shoppingCart.productsArray.forEach((productObject) => { %>    
+                                <tr>
+                                    <td style="vertical-align:middle"><img src="<%=productObject.image%>" style="width:40px"></td>
+                                    <td style="vertical-align:middle"><%=productObject.name%></td>
+                                    <td style="vertical-align:middle"><%=productObject.color%></td>
+                                    <td style="vertical-align:middle"><%=productObject.price%></td>
+                                    <td style="vertical-align:middle"><form action="/remove-from-cart/<%=session.email%>/<%=productObject.name%>"
+                                        method="GET">
+                                        <button class="editButton btn btn-sm btn-outline-secondary" type="submit"><i class="far fa-trash-alt"></i></button></form>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                
+                        <% }); %>    
+                    </table>
+                </div>
                 <div>
                     <a href="/ckeckOut" 
                     class="btn btn-success float-right mb-5" >Check out</a>
                     <h6 class="float-right mt-1 mr-4">The total price is:&nbsp&nbsp<%= shoppingCart.totalCartPrice%></h6>
-                </div>    
-            </div>
+                </div>  
+
+            <% } else { %>
+                
+               <h6 class="mb-4"><%=session.name%>'s Shopping Cart is empty</h6>
+               <span>
+                    <p class="d-inline-block">Go back to shop</p>
+                    <a class="btn btn-link" href="/home">Home</a>
+                </span> 
+            <% } %>
         </div>
     </div>
 </div>

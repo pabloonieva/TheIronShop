@@ -15,7 +15,7 @@ module.exports.showShoppingCart = (req, res, next) => {
             if (err) { return next(err); }
     
             if (cart) {
-                console.log(cart);
+                //console.log(cart);
                 res.render('cart/shopping-cart', {
                     session: req.session.currentUser,
                     shoppingCart: cart,
@@ -39,7 +39,7 @@ module.exports.addToCart = (req, res, next) => {
 
     Product.findOne({name:pushedToCartProductName}, (err, pushedToCartProduct) => {
 
-        console.log(pushedToCartProduct);
+        //console.log(pushedToCartProduct);
         pushedToCartProduct = pushedToCartProduct;
     
 
@@ -54,7 +54,7 @@ module.exports.addToCart = (req, res, next) => {
                     cart.productsArray.push(pushedToCartProduct);
                     cart.totalCartPrice += pushedToCartProduct.price;
                     cart.save();
-                    console.log(cart);
+                    //console.log(cart);
         
                 }else{
         
@@ -64,7 +64,7 @@ module.exports.addToCart = (req, res, next) => {
                     newShoppingCart.productsArray.push(pushedToCartProduct);
                     newShoppingCart.save();
                     newShoppingCart.totalCartPrice = pushedToCartProduct.price;
-                    console.log(newShoppingCart);
+                    //console.log(newShoppingCart);
                 }
             });
             //Flash product added to cart
@@ -76,3 +76,20 @@ module.exports.addToCart = (req, res, next) => {
     });    
 };
 
+module.exports.removeFromCart = (req, res, next) => {
+    const removedProductUserEmail = req.params.email;
+    const removedProductName = req.params.name;
+
+    ShoppingCart.findOne({userEmail:removedProductUserEmail}, (err, cart) => {
+        
+        for (let i = 0; i < cart.productsArray.length; i++) {
+            if (cart.productsArray [ i ].name === removedProductName) {
+                indexOfProduct = i;        
+            }
+        }
+        cart.totalCartPrice -= cart.productsArray [indexOfProduct].price;
+        cart.productsArray.splice(indexOfProduct,1);
+        cart.save();
+    });
+    res.redirect("/shoppingCart");
+}
