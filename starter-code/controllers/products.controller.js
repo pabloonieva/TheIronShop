@@ -46,20 +46,7 @@ module.exports.addProduct = (req, res, next) => {
     .then(() => {
       console.log("Saved correctly");
       res.redirect('/edit');
-  });
-  //NO me funciona, no se por qué
-  // console.log(typeof(newProduct.price));
-  // if(typeof(newProduct.price) == number){
-  //   console.log(typeof(newProduct.price));
-  //   newProduct.save()
-  //     .then(() => {
-  //       console.log("Saved correctly");
-  //       res.redirect('/edit');
-  //     });
-  // }else{
-  //   alert("Hey Admin. Price must be a number!");
-  //   res.redirect('/edit');
-  // }
+    });
 };
 
 module.exports.updateProduct = (req, res, next) => {
@@ -73,7 +60,7 @@ module.exports.updateProduct = (req, res, next) => {
     color: req.body.color,
     price: req.body.price,
     };
-
+    
   Product.findOne({ _id:productId }, (err, editedProduct) => {
     console.log(editedProduct);
     console.log(update);
