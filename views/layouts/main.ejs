@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        The Ironshop
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <script type="text/javascript" src="javascript/editProduct.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body class="body">
+
+    <div class = "text-center">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between align-middle" style="background-color: #eff1f3">
+            <div>
+                <a class="navbar-brand text-white" href="/home">
+                    <img src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/4017/s300/logo-ironhack-blue.png" width="48" height="50" class="d-inline-block align-middle ml-4">
+                </a>
+                <h4 class="navbar-text align-middle">Ironshop</h4>
+            </div>
+
+            <!--< if (url != "/login" && url != "/signup") {  %> -->
+
+                <% if (typeof(session) === 'undefined') { %>
+                    <!-- < if (url != "/home") {  %> -->
+                        <div>
+                            <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
+                        </div>
+                    <!-- < } %>   -->
+
+                    <div class = "text-center align-middle">
+                        <a href="/login" class="btn btn-outline-secondary">Log in</a>
+                        <a href="/signup" class="btn btn-outline-secondary">Sign up</a>
+                        <a href="/shoppingCart" class="btn btn-outline ironColor"><i class="fas fa-cart-arrow-down"></i></a>
+                    </div>
+
+                <% }else{ %>
+                    <% if (session.isAdmin) { %>
+                        <div class = "text-center align-middle">
+                            <!-- < if (url != "/home") {  %> -->
+                                <a href="/edit" class="btn btn-outline-secondary">Control Panel</a>
+                            <!-- < } else { %>   -->
+                                <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
+                            <!-- < } %>   -->
+                        </div>
+                    <% } %>
+                    <% if (!session.isAdmin) { %>
+                    <!-- < if (url != "/home") {  %> -->
+                            <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
+                    <!-- < } %>   -->
+                    <% } %>
+                    <div class = "text-center align-middle">
+                        <div class= "d-inline-block align-middle">
+                        <h7 class="navbar-text" margin-right = 4px>Hello <%=session.name%>&nbsp&nbsp</h7>
+                        </div>
+                        <a href="/shoppingCart" class="btn btn-outline ironColor mr-2"><i class="fas fa-cart-arrow-down"></i></a>
+                        <a href="/logout" class="btn btn-outline-secondary"><i class="fas fa-sign-out-alt"></i></a>
+                    </div>
+                <% } %>
+            <!--< }  else { %>
+                <a href="/home" class="btn btn-outline-secondary"><i class="fas fa-home"></i></a>
+                < } %> -->
+        </nav>
+    </div>
+    
+
+    <%- body -%>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>

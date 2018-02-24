@@ -1,0 +1,66 @@
+<div>
+    <!-- <div class="container-fluid w-40">
+        <div class="table-responsive mt-3">
+            <h6><%=session.name%>'s shipping information</h6>
+            <table class="table table-sm">
+                <tbody>
+                    <tr class="">
+                        <td class="d-inline-block" style="vertical-align:middle; width:80px "><h8><small>Name</small></h8>
+                        <td class="d-inline-block" style="vertical-align:middle; width:300px"><h8><small><%=session.name%></small></h8>
+                    </tr>
+                    <tr>
+                        <td class="d-inline-block" style="vertical-align:middle; width:80px"><h8><small>Email</small></h8>
+                        <td class="d-inline-block" style="vertical-align:middle; width:300px"><h8><small><%=session.email%></small></h8>
+                    </tr>
+                    <tr>
+                        <td class="d-inline-block" style="vertical-align:middle; width:80px"><h8><small>Addres</small></h8>
+                        <td class="d-inline-block" style="vertical-align:middle; width:300px"><h8><small><%=session.address%></small></h8>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> -->
+
+        
+    <div class="text-center mt-5">
+        <div class = "w-75 d-inline-block">
+
+            <% if(shoppingCart.productsArray.length != 0) { %>    
+
+             <h6 class="mb-4"><%=session.name%>'s Shopping Cart</h6>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tbody>
+                            <% shoppingCart.productsArray.forEach((productObject) => { %>    
+                                <tr>
+                                    <td style="vertical-align:middle"><img src="<%=productObject.image%>" style="width:40px"></td>
+                                    <td style="vertical-align:middle"><%=productObject.name%></td>
+                                    <td style="vertical-align:middle"><%=productObject.color%></td>
+                                    <td style="vertical-align:middle"><%=productObject.price%></td>
+                                    <td style="vertical-align:middle"><form action="/remove-from-cart/<%=session.email%>/<%=productObject.name%>"
+                                        method="GET">
+                                        <button class="editButton btn btn-sm btn-outline-secondary" type="submit"><i class="far fa-trash-alt"></i></button></form>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                
+                        <% }); %>    
+                    </table>
+                </div>
+                <div>
+                    <a href="/ckeckOut" 
+                    class="btn btn-success float-right mb-5" >Check out</a>
+                    <h6 class="float-right mt-1 mr-4">The total price is:&nbsp&nbsp<%= shoppingCart.totalCartPrice%></h6>
+                </div>  
+
+            <% } else { %>
+                
+               <h6 class="mb-4"><%=session.name%>'s Shopping Cart is empty</h6>
+               <span>
+                    <p class="d-inline-block">Go back to shop</p>
+                    <a class="btn btn-link" href="/home">Home</a>
+                </span> 
+            <% } %>
+        </div>
+    </div>
+</div>

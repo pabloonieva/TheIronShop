@@ -1,0 +1,126 @@
+<br>
+<br>
+<br>            
+<div class="container">
+    <form class="form-horizontal" role="form" method="POST" action="/signup">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h2>Sign up</h2>
+                <hr>
+            </div>
+        </div>
+        <!--Name-->
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group has-danger">
+                    <label class="sr-only">Name</label>
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user mt-2"></i></div>
+                        <input type="text" name="name" class="form-control" id="name"
+                            placeholder="Name" required autofocus>
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                    <span class="text-danger align-middle">
+                        <i class="fa fa-close"></i> Example error message
+                    </span>
+                </div>
+            </div>-->
+        </div> 
+        <!--Email-->
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group has-danger">
+                    <label class="sr-only" for="email">Email Address</label>
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at mt-2"></i></div>
+                        <input type="text" name="email" class="form-control" id="email"
+                            placeholder="you@example.com" required autofocus>
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                    <span class="text-danger align-middle">
+                        <i class="fa fa-close"></i> Example error message
+                    </span>
+                </div>
+            </div>-->
+        </div> 
+
+        <!--Password-->
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="sr-only" for="password">Password</label>
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key mt-2"></i></div>
+                        <input type="password" name="password" class="form-control" id="password"
+                                placeholder="Password" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                    <span class="text-danger align-middle">
+                    <!-- Put password error message here -->    
+                    </span>
+                </div>
+            </div>
+        </div>                
+
+        <!--Shipping Address-->
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group has-danger">
+                    <label class="sr-only">Shipping Address</label>
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fas fa-location-arrow mt-2"></i></div>
+                        <input type="text" name="address" class="form-control" id="address"
+                            placeholder="Calle Lilas, 17, 28223, Madrid, Spain" required autofocus>
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                    <span class="text-danger align-middle">
+                        <i class="fa fa-close"></i> Example error message
+                    </span>
+                </div>
+            </div>-->
+        </div> 
+
+            <!--
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                    <span class="text-danger align-middle">
+                        <i class="fa fa-close"></i> Example error message
+                    </span>
+                </div>
+            </div>-->
+        </div> 
+
+
+        <div class="row" style="padding-top: 1rem">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success"><i class="fas fa-sign-in"></i> Sign up</button>
+                <br>
+                <span>
+                    <p class="d-inline-block">Already have an IronAccount?</p>
+                    <a class="btn btn-link" href="/login">Log in</a>
+                  </span>
+            </div>
+        </div>
+</form>
+</div>
