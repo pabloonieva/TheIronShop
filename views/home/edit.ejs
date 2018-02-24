@@ -1,0 +1,64 @@
+<div class="table-responsive container w-90">
+  <br>
+  <h2>Hello Admin</h2>
+  <hr>
+  <p>Here you will be able to edit all your IronProducts</p>
+  <table class="table table-striped w-90">
+    <thead>
+        <tr>
+          <th>Name</th>
+          <th>Image URL</th>
+          <th>Color</th>
+          <th>Price</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% listOfProducts.forEach((product) => { %>
+      <tr>
+          <form action="/updateProduct/<%=product._id%>" method="POST">
+            <td class='d-none'><input value="<%=product.name%>" name="name"></input></td>
+            <td style:"width: 30px" class='d-none'><input value="<%=product.image%>" name="image"></input></td>
+            <td class='d-none'><input value="<%=product.color%>" name="color"></input></td>
+            <td class='d-none'><input value="<%=product.price%>" name="price"></input></td>
+            <td class='d-none'><button class="btn-info" type="submit" >Save</button></td>
+          </form>
+          <td><%=product.name%></td>
+          <td style:"width: 30px"><%=product.image%></td>
+          <td><%=product.color%></td>
+          <td><%=product.price%></td>
+          <td><button class="editButton btn ironColor" type="btn btn-primary">Edit</button></td>
+          <td><form action="/deleteProduct/<%= product._id %>" method="POST">
+            <button class="editButton btn btn-danger" type="submit">Delete</button></form>
+          </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<br>
+<hr>
+<div class="container">
+  <h3>Here you can add a new product</h3><br>
+  <form class="form-horizontal" action="/edit" method= "POST">
+    <div class="form-group">
+      <label class="control-label col-sm-2">Name:</label>
+      <input type="text" placeholder="Enter name" name="name" width="100%">
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Image:</label>
+      <input type="text" placeholder="Enter image URL" name="image" width="100%">
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Color:</label>
+      <input type="text" placeholder="Enter product color" name="color" width="100%">
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Price:</label>
+      <input type="text" placeholder="Enter price" name="price" width="100%">
+    </div>
+    <button type="submit" class="btn ironColor">Save product</input>
+  </form>
+</div>
+<br><br>
