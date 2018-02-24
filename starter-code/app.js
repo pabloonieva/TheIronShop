@@ -1,10 +1,12 @@
 const passport = require('passport');
 const expressFlash = require('express-flash');
-const flash = require("connect-flash");
+//const flash = require("connect-flash");
 //Express se instala con npm install express --save
 //Archivos estáticos (CSS), han de guardarse en carpeta public
 //Tenemos que decir donde están las views
 const express = require(`express`);
+
+const dotEnv = require("dotenv").config(); 
 
 //Path is used to work with file & directory paths
 //View documentation at https://nodejs.org/docs/latest/api/path.html
