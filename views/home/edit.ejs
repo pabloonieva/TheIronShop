@@ -17,12 +17,14 @@
     <tbody>
       <% listOfProducts.forEach((product) => { %>
       <tr>
-          <form action="/updateProduct/<%=product._id%>" method="POST">
-            <td class='d-none'><input value="<%=product.name%>" name="name"></input></td>
+          <form class="edit-form form-inline" action="/updateProduct/<%=product._id%>" method="POST">
+            <td class='d-none'><input class="medium-input" value="<%=product.name%>" name="name"></input></td>
             <td style:"width: 30px" class='d-none'><input value="<%=product.image%>" name="image"></input></td>
-            <td class='d-none'><input value="<%=product.color%>" name="color"></input></td>
-            <td class='d-none'><input value="<%=product.price%>" name="price"></input></td>
-            <td class='d-none'><button class="btn-info" type="submit" >Save</button></td>
+            <td class='d-none'><input class="medium-input"value="<%=product.color%>" name="color"></input></td>
+            <td class='d-none'><input class="small-input" value="<%=product.price%>" name="price"></input></td>
+            <td class='d-none'><button class="btn btn-info" type="submit" >Save</button></td>
+            <td class='d-none'><form action="/deleteProduct/<%= product._id %>" method="POST">
+              <button class="editButton btn btn-danger" type="submit">Delete</button></form>
           </form>
           <td><%=product.name%></td>
           <td style:"width: 30px"><%=product.image%></td>
