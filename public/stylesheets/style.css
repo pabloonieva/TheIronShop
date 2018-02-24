@@ -20,3 +20,6 @@ input.edit-form{
 .medium-input{
   width: 80px;
 }
+img:hover{
+  transform: scale(1.05);
+}
