@@ -11,3 +11,12 @@ body h1 h2 td tr div div.container{
   background-color: #32c3ff;
   color: white;
 }
+input.edit-form{
+  width: auto;
+}
+.small-input{
+  width: 40px;
+}
+.medium-input{
+  width: 80px;
+}
