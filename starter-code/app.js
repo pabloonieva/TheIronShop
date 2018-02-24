@@ -6,7 +6,7 @@ const expressFlash = require('express-flash');
 //Tenemos que decir donde están las views
 const express = require(`express`);
 
-const dotEnv = require("dotenv").config();
+require("dotenv").config();
 
 //Path is used to work with file & directory paths
 //View documentation at https://nodejs.org/docs/latest/api/path.html
