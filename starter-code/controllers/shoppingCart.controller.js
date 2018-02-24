@@ -4,30 +4,26 @@ const Product = require('../models/product.model');
 
 
 module.exports.showShoppingCart = (req, res, next) => {
+  //Aquí tenemos que trabajar con las cookies para poder pasar a la vista carrito la info de carrito de un no-logueado
+  if (req.user) {
+      const userEmail = req.user.email;
 
-//Aquí tenemos que trabajar con las cookies para poder pasar a la vista carrito la info de carrito de un no-logueado
-    
-    if(typeof(req.session.currentUser)!='undefined'){
+      ShoppingCart.findOne({ userEmail:userEmail }, (err, cart) => {
+          if (err) { return next(err); }
+          if (cart) {
+              //console.log(cart);
+              res.render('cart/shopping-cart', {
+                  session: req.user,
+                  shoppingCart: cart,
+                  url: req.originalUrl
+              });
 
-        const userEmail = req.session.currentUser.email;
-    
-        ShoppingCart.findOne({userEmail:userEmail}, (err, cart) => {
-            if (err) { return next(err); }
-    
-            if (cart) {
-                //console.log(cart);
-                res.render('cart/shopping-cart', {
-                    session: req.session.currentUser,
-                    shoppingCart: cart,
-                    url:req.originalUrl
-                });
-
-            }else{
-                console.log("Carrito not found");
-                res.redirect("/home");
-            }
-        });
-    }else{
+          }else{
+              console.log("Carrito not found");
+              res.redirect("/home");
+          }
+      });
+    } else {
         //Deberíamos imprimir mensaje: para acceder carro log in
         res.redirect("/login");
     }
@@ -38,26 +34,20 @@ module.exports.addToCart = (req, res, next) => {
     const pushedToCartProductName = req.params.name;
 
     Product.findOne({name:pushedToCartProductName}, (err, pushedToCartProduct) => {
-
         //console.log(pushedToCartProduct);
         pushedToCartProduct = pushedToCartProduct;
-    
 
-        if(typeof(req.session.currentUser)!='undefined'){
+        if (req.user) {
+            const userEmail = req.user.email;
 
-            const userEmail = req.session.currentUser.email;
-        
-            ShoppingCart.findOne({userEmail:userEmail}, (err, cart) => {
+            ShoppingCart.findOne({ userEmail:userEmail }, (err, cart) => {
                 if (err) { return next(err); }
-        
                 if (cart) {
                     cart.productsArray.push(pushedToCartProduct);
                     cart.totalCartPrice += pushedToCartProduct.price;
                     cart.save();
                     //console.log(cart);
-        
-                }else{
-        
+                } else {
                     const newShoppingCart = new ShoppingCart({
                         userEmail: userEmail
                     });
@@ -73,7 +63,7 @@ module.exports.addToCart = (req, res, next) => {
             //Message: need to login to purchase
             res.redirect("/login");
         }
-    });    
+    });
 };
 
 module.exports.removeFromCart = (req, res, next) => {
@@ -81,10 +71,10 @@ module.exports.removeFromCart = (req, res, next) => {
     const removedProductName = req.params.name;
 
     ShoppingCart.findOne({userEmail:removedProductUserEmail}, (err, cart) => {
-        
+
         for (let i = 0; i < cart.productsArray.length; i++) {
             if (cart.productsArray [ i ].name === removedProductName) {
-                indexOfProduct = i;        
+                indexOfProduct = i;
             }
         }
         cart.totalCartPrice -= cart.productsArray [indexOfProduct].price;

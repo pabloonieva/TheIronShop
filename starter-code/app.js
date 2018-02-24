@@ -6,7 +6,7 @@ const expressFlash = require('express-flash');
 //Tenemos que decir donde están las views
 const express = require(`express`);
 
-const dotEnv = require("dotenv").config(); 
+const dotEnv = require("dotenv").config();
 
 //Path is used to work with file & directory paths
 //View documentation at https://nodejs.org/docs/latest/api/path.html
@@ -50,9 +50,6 @@ const shoppingCart = require('./routes/shoppingCart.routes');
 
 const app = express();
 
-app.use(passport.initialize());
-app.use(passport.session());
-
 //View engine setup
 app.use(expressLayouts);
 app.set('layout', 'layouts/main');
@@ -81,6 +78,8 @@ app.use(session({
     ttl: 24 * 60 * 60
   })
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', auth);
 app.use('/', products);
