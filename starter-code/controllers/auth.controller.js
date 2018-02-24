@@ -18,7 +18,7 @@ module.exports.doSignup = (req, res, next) => {
                     url: req.originalUrl
                 });
 
-            }else{
+            } else {
                 const newUser = new User( {
                     name: req.body.name,
                     email: req.body.email,
@@ -71,16 +71,15 @@ module.exports.doLogin = (req, res, next) => {
         if(error){
           next(error);
         } else if(!user){
-            res.render('auth/login', {error: validation, url: req.originalUrl});
+            res.render('auth/login', { error: validation, url: req.originalUrl });
         } else{
-            req.login(user,(error) => {
-              if(error){
+            req.login(user, error => {
+              if (error) {
                 next(error);
               } else{
-                req.session.currentUser = user;
-                if(req.session.currentUser.isAdmin){
+                if (req.user.isAdmin) {
                   res.redirect('/edit');
-                }else{
+                } else {
                   res.redirect('/home');
                 }
               }
@@ -97,12 +96,8 @@ module.exports.doLogin = (req, res, next) => {
       //   });
     }
 };
+
 module.exports.logout = (req, res, next) => {
-  req.session.destroy(error => {
-      if (error) {
-          next(error);
-      } else {
-          res.redirect("/home");
-      }
-  });
+  req.logout();
+  res.redirect("/home");
 };

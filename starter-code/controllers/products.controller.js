@@ -3,36 +3,38 @@ const Product = require('../models/product.model');
 const expressFlash = require('express-flash');
 
 
-
 module.exports.showUser = (req, res, next) => {
-  Product.find({}, (err, listOfProducts) => {
-    if (err) { return next(err); }
-    console.log(listOfProducts);
-    res.render('home/home', {
-      listOfProducts:listOfProducts,
-      session:req.session.currentUser,
-      url: req.originalUrl
-    });
-  });
+  Product.find()
+    .then(products => {
+      console.log(products);
+      res.render('home/home', {
+        listOfProducts: products,
+        session: req.user,
+        url: req.originalUrl
+      });
+    })
+    .catch(error => next(error));
 };
 
 module.exports.showAdmin = (req, res, next) => {
-  Product.find({}, (err, listOfProducts) => {
-    if (err) {return next(err);}
-    if(req.session.currentUser){
-      if(!req.session.currentUser.isAdmin){
-        res.redirect("http://www.i-fuckyou.com/");
-        }else{
+  if (!req.user) {
+    res.redirect("http://www.i-fuckyou.com/");
+  } else {
+    Product.find()
+      .then(products => {
+        console.log(req.user);
+        if (!req.user.isAdmin) {
+          res.redirect("http://www.i-fuckyou.com/");
+        } else {
           res.render('home/edit', {
-            listOfProducts:listOfProducts,
-            session:req.session.currentUser,
+            listOfProducts: products,
+            session:req.user,
             url: req.originalUrl
           });
         }
-    }else{
-      res.redirect("http://www.i-fuckyou.com/");
-    }
-  });
+      })
+      .catch(error => next(error));
+  }
 };
 
 module.exports.addProduct = (req, res, next) => {
@@ -46,6 +48,13 @@ module.exports.addProduct = (req, res, next) => {
     .then(() => {
       console.log("Saved correctly");
       res.redirect('/edit');
+    })
+    .catch(error => {
+      if (error instanceof mongoose.Error.ValidationError) {
+          res.redirect('/edit');
+      } else {
+          next(error);
+      }
     });
 };
 
@@ -60,7 +69,7 @@ module.exports.updateProduct = (req, res, next) => {
     color: req.body.color,
     price: req.body.price,
     };
-    
+
   Product.findOne({ _id:productId }, (err, editedProduct) => {
     console.log(editedProduct);
     //console.log(update);
