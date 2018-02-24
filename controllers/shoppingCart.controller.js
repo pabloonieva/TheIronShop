@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const ShoppingCart = require('../models/shoppingCart.model');
 const Product = require('../models/product.model');
+const paypal = require('../configs/paypal.config');
 
 
 module.exports.showShoppingCart = (req, res, next) => {
@@ -82,4 +83,49 @@ module.exports.removeFromCart = (req, res, next) => {
         cart.save();
     });
     res.redirect("/shoppingCart");
+}
+
+module.exports.buy = (req, res, next) => {
+  ShoppingCart.findOne({ userEmail: req.user.email })
+    .then(cart => {
+      paypal.pay(cart._id, cart.totalCartPrice, 'IronShop', 'EUR', true, ['custom', 'data'], function(error, url) {
+      	if (error) {
+      		console.log(error);
+      		next(error);
+      	}
+      	// redirect to paypal webpage
+      	res.redirect(url);
+      });
+    })
+    .catch(error => next(error));
+}
+
+module.exports.onPaypalOk = (req, res, next) => {
+  const payerID = req.query.PayerID;
+  const token = req.query.token;
+
+  paypal.detail(token, payerID, (error, data, invoiceNumber, price) => {
+  	if (error) {
+  		console.log(error);
+  		next(error);
+  	}
+    console.log(data);
+    if (data.success) {
+      console.log('SUCCESS');
+      const orderId = data.CUSTOM.split('|')[0];
+      console.log(orderId);
+      ShoppingCart.remove({ userEmail: req.user.email, _id: orderId })
+        .then(() => {
+          res.redirect('/');
+        })
+        .catch(error => next(error));
+    } else {
+      console.log('FAIL');
+      res.redirect('/');
+    }
+  });
+}
+
+module.exports.onPaypalError = (req, res, next) => {
+  res.redirect('/shoppingCart');
 }

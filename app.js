@@ -42,6 +42,7 @@ const MongoStore = require("connect-mongo")(session);
 
 require('./configs/db.config');
 require('./configs/passport.config').setup(passport);
+require('./configs/paypal.config');
 
 //Requerimos las rutas creadas
 const auth = require('./routes/auth.routes');
