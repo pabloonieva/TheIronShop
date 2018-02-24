@@ -8,6 +8,7 @@
         <tr>
           <th>Name</th>
           <th>Image URL</th>
+          <th>2n Image URL</th>
           <th>Color</th>
           <th>Price</th>
           <th>Edit</th>
@@ -20,6 +21,7 @@
           <form class="edit-form form-inline" action="/updateProduct/<%=product._id%>" method="POST">
             <td class='d-none'><input class="medium-input" value="<%=product.name%>" name="name"></input></td>
             <td style:"width: 30px" class='d-none'><input value="<%=product.image%>" name="image"></input></td>
+            <td style:"width: 30px" class='d-none'><input value="<%=product.image2%>" name="image2"></input></td>
             <td class='d-none'><input class="medium-input"value="<%=product.color%>" name="color"></input></td>
             <td class='d-none'><input class="small-input" value="<%=product.price%>" name="price"></input></td>
             <td class='d-none'><button class="btn btn-info" type="submit" >Save</button></td>
@@ -27,7 +29,8 @@
               <button class="editButton btn btn-danger" type="submit">Delete</button></form>
           </form>
           <td><%=product.name%></td>
-          <td style:"width: 30px"><%=product.image%></td>
+          <td><img src="<%=product.image%>" width="50px"></td>
+          <td><img src="<%=product.image2%>" width="50px"></td>
           <td><%=product.color%></td>
           <td><%=product.price%></td>
           <td><button class="editButton btn ironColor" type="btn btn-primary">Edit</button></td>
@@ -51,6 +54,10 @@
     <div class="form-group">
       <label class="control-label col-sm-2">Image:</label>
       <input type="text" placeholder="Enter image URL" name="image" width="100%">
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">2º Image:</label>
+      <input type="text" placeholder="Enter a 2nd image URL" name="image2" width="100%">
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2">Color:</label>

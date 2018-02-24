@@ -82,4 +82,4 @@ module.exports.removeFromCart = (req, res, next) => {
         cart.save();
     });
     res.redirect("/shoppingCart");
-}
+};
