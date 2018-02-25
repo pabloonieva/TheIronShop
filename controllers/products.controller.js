@@ -40,6 +40,7 @@ module.exports.addProduct = (req, res, next) => {
   const newProduct = new Product ({
     name: req.body.name,
     image: req.body.image,
+    image2: req.body.image2,
     color: req.body.color,
     price: req.body.price
   });
@@ -65,6 +66,7 @@ module.exports.updateProduct = (req, res, next) => {
   var update = {
     name: req.body.name,
     image: req.body.image,
+    image2: req.body.image2,
     color: req.body.color,
     price: req.body.price,
     };
@@ -74,6 +76,7 @@ module.exports.updateProduct = (req, res, next) => {
     //console.log(update);
     editedProduct.name = update.name;
     editedProduct.image = update.image;
+    editedProduct.image2 = update.image2;
     editedProduct.color = update.color;
     editedProduct.price = update.price;
     editedProduct.save();
@@ -83,38 +86,9 @@ module.exports.updateProduct = (req, res, next) => {
 };
 module.exports.deleteProduct = (req, res, next) => {
   const productId = req.params.id;
-  //console.log(productId);
-  //console.log("Heeeeeeeello");
 
   Product.findByIdAndRemove(productId, (err, product) => {
     if (err){ return next(err); }
     res.redirect('/edit');
   });
 };
-
-/*
-module.exports.showUser = (req, res, next) => {
-  res.render('home/home',{
-    listOfProducts: [
-      {
-        name: "IronSweater",
-        color: "light grey",
-        image: "https://preview.ibb.co/mURKgS/2018_02_18_10_40_59.jpg",
-        price: 35
-      },
-      {
-        name: "IronTshirt",
-        color: "blue",
-        image: "https://preview.ibb.co/eE6PFn/2018_02_18_10_41_51.jpg",
-        price: 10
-      },
-      {
-        name: "IronBottle",
-        color: "black",
-        image: "https://preview.ibb.co/iFfiqn/2018_02_17_19_39_42.jpg",
-        price: 8
-      }
-    ]
-  });
-};
-*/
