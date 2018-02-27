@@ -20,3 +20,16 @@ input.edit-form{
 .medium-input{
   width: 80px;
 }
+
+.image-2 {
+  display: none;
+  min-height: 333.333333px;
+}
+
+.card.d-inline-block:hover .image-1 {
+  display: none;
+}
+
+.card.d-inline-block:hover .image-2 {
+  display: block;
+}
